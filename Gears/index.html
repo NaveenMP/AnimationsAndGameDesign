@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gears Animation</title>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <script>
+    var blueGear = new Image();
+    blueGear.src = 'blue_gear.png';
+    var greenGear = new Image();
+    greenGear.src = 'green_gear.png';
+    var redGear = new Image();
+    redGear.src = 'red_gear.png';
+
+    var rotationSpeed = 3;
+    
+    // Initial rotation angles for each gear
+    var blueGearAngle = 0;
+    var greenGearAngle = 0;
+    var redGearAngle = 0;
+
+    function draw() {
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      displayGear(ctx, blueGear, 100, 200, blueGearAngle);
+      displayGear(ctx, greenGear, 250, 278, greenGearAngle);
+      displayGear(ctx, redGear, 85, 110, redGearAngle);
+
+      ctx.font = '20px Arial';
+      ctx.fillStyle = 'black';
+      ctx.fillText('Gears Animation', 10, 30);
+
+      // Update rotation angles
+      blueGearAngle += rotationSpeed;
+      greenGearAngle -= rotationSpeed;
+      redGearAngle += rotationSpeed;
+    }
+
+    function displayGear(ctx, gear, x, y, angle) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle * (Math.PI / 180)); // Convert degrees to radians
+      ctx.drawImage(gear, -gear.width / 2, -gear.height / 2);
+      ctx.restore();
+    }
+
+    setInterval(draw, 1000 / 60); // 60 frames per second
+  </script>
+</body>
+</html>
+
+
+
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   Include p5.js from the local directory
+  <script src="p5.js"></script>
+  <script src="planck.min.js"></script>
+  <script src="p5.play.js"></script>
+  <title>Gear Animation</title>
+</head>
+<body>
+  <script src="gears.js"></script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="gears.js"></script>
+  <title>Gears Animation</title>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+</html>
+-->
+
